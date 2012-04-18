@@ -1,6 +1,8 @@
 <?php
 session_start(); 
 
+// Test
+
 include "includes/mysqlconnect.php"; // Connect to database
 include "includes/login.php"; // Pull login script
 
