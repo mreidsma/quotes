@@ -1,0 +1,76 @@
+body {
+display: table;
+caption-side: top; }
+    
+[role="navigation"] {
+display: table-caption;
+height: 2.5em;
+width: 100%;
+background: #dedede;
+border-bottom: 1px solid #777;
+margin-top: 0;}
+
+header { margin-top: 2.5em; }
+
+[role="navigation"] ul li {
+/* float: left; */
+}
+
+[role="navigation"] ul li a {
+float: left;
+padding: .5em 1em;
+background: #dedede;
+border-bottom: none;
+font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;
+font-size: 1em;
+color: #444;
+text-decoration: none; }
+
+[role="navigation"] ul li a:hover {
+background: #ccc; }
+/*
+.add-form {
+width: 37.5em; } */
+
+div.radio-list {
+	display: inline;
+}
+
+h3.total_price {
+width: 40%;
+top:2.8em;
+font-size: 1.4em;
+}
+
+form#binderyquotes div.clear {
+position: fixed; 
+top: 5.5em;
+z-index: 100;
+right: .5em;
+}
+
+section#old_estimates a,
+section#old_estimates a:first-child {
+	width: 24%;
+}
+
+a.client_hide {
+	display:inline-block !important;
+}
+
+a.saved_date,
+a.saved_project {
+	display: inline-block !important;
+}
+
+div.third {width:30%;float:left;margin-right:1.5%;}
+
+input#add-item-amount,
+input#ud_item_amount {
+width: 30%;
+}
+
+form#binderyquotes .submit-button-gray {
+	float: none;position:static !important;bottom:0 !important;
+}
+
