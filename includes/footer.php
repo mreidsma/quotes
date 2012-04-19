@@ -1,13 +1,12 @@
 </div><!-- End .content -->
 
-<?php include('../includes/navigation.php'); ?>
+<?php include 'navigation.php'; ?>
 
 <footer role="contentinfo">
 
 </footer>
 
 <script src="http://gvsulib.com/labs/js/jquery.min.js"></script>
-<script src="../js/modernizr.js" type="text/javascript"></script>
 <script src="../js/jquery.validate.min.js"></script>
 <script src="../js/respond.js"></script>
 <script>

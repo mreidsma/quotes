@@ -13,7 +13,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 	$m = NULL;
 
 	include "includes/current_user.php"; // Get current user information
-	require "includes/functions_wip.php";
+	require "includes/functions.php";
 	
 	if(isset($_POST['save_est'])) {
 	
@@ -31,7 +31,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 	
 	// Ok, let's write it all to the database
 	
-	$save_result = mysql_query("INSERT INTO client_jobs VALUES ('','$client_job_name','$client_job_jobno','$client_job_notes','','$mysqldate','$client_job_user','$client_job_project','')");
+	$save_result = mysql_query("INSERT INTO client_jobs VALUES ('','$client_job_name','$client_job_jobno','$client_job_notes','$client_job_total','$mysqldate','$client_job_user','$client_job_project','')");
 	if($save_result) {
 		
 		$m = '<div class="success">Your estimate has been saved.</div>';
@@ -41,11 +41,17 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 	
 	// Now get all the items in each category
 	
-	if(isset($_POST['_check'])) {
+	$c = 0;
+	
+	while($c < 3) {
+		
+	$checkFunc = $c . '_check';
+	
+	if(isset($_POST[$checkFunc])) {
 		
 		$t = 0;
 		
-		foreach ($_POST['_check'] as $check_total) { // Iterate through the checkboxes
+		foreach ($_POST[$checkFunc] as $check_total) { // Iterate through the checkboxes
 				
 			$_data = explode("|", $check_total);
 			
@@ -66,11 +72,11 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 			$t++;	
 		}
 		
+	} $c++;
 	}
-
 // Send to the new form
 
-header('Location: http://' . $_SERVER['SERVER_NAME'] . '/estimate/?no=' .$est_id .'');
+header('Location: http://' . $_SERVER['SERVER_NAME'] . '/estimates/?no=' .$est_id .'');
 
 }
 	
@@ -137,7 +143,7 @@ if(isset($_POST['new_project'])) {
 
 <?php
 
-buildDropdown(1);
+buildTestDropdown(1);
 
 newCheckboxes(1, $est_id); 
 
@@ -150,7 +156,7 @@ newCheckboxes(1, $est_id);
 
 <?php 
 
-buildDropdown(0); 
+buildTestDropdown(0); 
 
 newCheckboxes(0, $est_id); 
 
@@ -163,7 +169,7 @@ newCheckboxes(0, $est_id);
 
 <?php 
 
-buildDropdown(2); 
+buildTestDropdown(2); 
 
 newCheckboxes(2, $est_id); 
 
@@ -205,7 +211,7 @@ if(isset($_POST['update_total'])) { // The details are being updated
 
 <?php
 
-buildDropdown(1);
+buildTestDropdown(1);
 
 checkCheckBoxes(1);
 
@@ -218,7 +224,7 @@ checkCheckBoxes(1);
 
 <?php
 
-buildDropdown(0);
+buildTestDropdown(0);
 
 checkCheckBoxes(0);
 
@@ -231,7 +237,7 @@ checkCheckBoxes(0);
 
 <?php
 
-buildDropdown(2);
+buildTestDropdown(2);
 
 checkCheckBoxes(2);
 

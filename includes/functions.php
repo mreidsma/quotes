@@ -20,6 +20,26 @@ function buildDropdown($ty) {
 	<br />';
 }
 
+function buildTestDropdown($ty) {
+	
+	echo '<label for="' . $ty . '_new_item">Add:</label>
+	<select name="' . $ty . '_new_item[]">
+	<option value="#">----------</option>';
+
+	$result = mysql_query("SELECT * FROM Items WHERE item_type='$ty' && item_del!=1 ORDER BY item_name ASC");
+	if($result) {
+		
+		while ($item_row = mysql_fetch_assoc($result)) {
+			
+			echo '<option value="'. $item_row['item_id'] . '">'. $item_row['item_name'] . ' : 1 @ $' . $item_row['item_amount'] . '</option>';
+			
+		}
+	}
+	
+	echo '</select>
+	<br />';
+}
+
 function buildCheckboxes($ty, $id) {
 
 	$checkResult = mysql_query("SELECT * FROM estimates WHERE estimate_item_clientjob='$id' && estimate_active!=0");
@@ -75,7 +95,7 @@ function newCheckboxes($ty, $id) {
 					$item_total_price = $_row['pitem_qty'] * $_item_row['item_amount'];
 					$item_total_price = number_format($item_total_price, 2, '.', ',');
 			
-					echo '<input type="checkbox" value="' . $item_total_price . '|' . $_item_row['item_name'] . '|' . $pitem_id . '|' . $_item_row['item_type'] . '" name="' . $ty . '_check[]" checked="checked" /> <label for="' . $ty . '_check">' . $_item_row['item_name'] . '</label> $<input type="text" value="' . $item_total_price . '" name="_total[]" /><br />';
+					echo '<input type="checkbox" value="' . $item_total_price . '|' . $_item_row['item_name'] . '|' . $pitem_id . '|' . $_item_row['item_type'] . '" name="' . $ty . '_check[]" checked="checked" /> <label for="' . $ty . '_check">' . $_item_row['item_name'] . '</label> $<input type="text" value="' . $item_total_price . '" name="' . $ty . '_total[]" /><br />';
 					
 				}
 			} $i++;
@@ -86,11 +106,15 @@ function newCheckboxes($ty, $id) {
 
 function checkCheckBoxes($ty) {
 	
-	if(isset($_POST['new_item'])) { // Did we get any new items from dropdowns?
+	global $new_total_price;
+	
+	$checkNew = $ty . '_new_item';
+	
+	if(isset($_POST[$checkNew])) { // Did we get any new items from dropdowns?
 		
 		$x = 0;
 		
-		foreach ($_POST['new_item'] as $_newItem) {
+		foreach ($_POST[$checkNew] as $_newItem) {
 		
 			$new_id = $_newItem;
 		
@@ -139,21 +163,13 @@ function checkCheckBoxes($ty) {
 				$totalFunc = $ty . '_total';
 				
 				$_updated_price = $_POST[$totalFunc][$t];
-				$_updated_id = $_POST['_uid'][$t];
-				if($_updated_price != $price) {
-					if($_id == $_updated_id) {
-						$new_total = number_format($_updated_price, 2, '.', ',');
-					} else {
-						$new_total = number_format($_price, 2, '.', ',');
-					}
-				} else {
-					$new_total = number_format($_price, 2, '.', ',');
-				}
+				$new_total = number_format($_updated_price, 2, '.', ',');
+					
 							
 			echo '<input type="checkbox" value="' . $new_total . '|' . $_name . '|' . $_id . '|' . $_type . '" name="' . $ty . '_check[]" checked="checked" /> <label for="' . $ty . '_check[]">' . $_name . '</label> $<input type="text" value="' . $new_total . '" name="' . $ty . '_total[]" /><br />';
 			
 			$new_total_price = $new_total_price + $new_total;
-
+			
 			$t++;	
 		}
 	}
