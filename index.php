@@ -46,6 +46,9 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 	while($c < 3) {
 		
 	$checkFunc = $c . '_check';
+	$totalFunc = $c . '_total';
+	
+	echo $checkFunc;
 	
 	if(isset($_POST[$checkFunc])) {
 		
@@ -55,7 +58,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 				
 			$_data = explode("|", $check_total);
 			
-			$updated_price = number_format($_POST['_total'][$t], 2, '.', ',');
+			$updated_price = number_format($_POST[$totalFunc][$t], 2, '.', ',');
 			$_price = number_format($_data[0], 2, '.', ',');
 			$_name = $_data[1];
 			$_id = $_data[2];
@@ -64,7 +67,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 			
 			// Write these to database
 			
-		$item_result = mysql_query("INSERT INTO estimates VALUES ('','$labor_id','$new_labor_total','$est_id')");
+		$item_result = mysql_query("INSERT INTO estimates VALUES ('','$_id','$updated_price','$est_id','1')");
 			if(!$item_result) {
 				$m = "Oh boy. Something went wrong.";
 			}
@@ -76,7 +79,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 	}
 // Send to the new form
 
-header('Location: http://' . $_SERVER['SERVER_NAME'] . '/estimates/?no=' .$est_id .'');
+// header('Location: http://' . $_SERVER['SERVER_NAME'] . '/estimates/?no=' .$est_id .'');
 
 }
 	
