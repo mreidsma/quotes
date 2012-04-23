@@ -1,0 +1,51 @@
+# README - 360Link-Reset 2.0
+
+---
+
+This web app was developed by Matthew Reidsma in PHP to simplify complicated estimates.
+
+## INSTALLATION 
+
+Create a MySQL database and import the quotes.sql file. You'll then need to add a row to the users table with your username and contact details. To add a password, you'll need to create an SHA1 hash of your password, or you can just use the following hash and login with the password 'password' (no quotes). Then click "forgot my password" and the system will generate a new one for you.
+
+Open includes/mysqlconnect-sample.php in your favorite text editor and add the database name, username, and password. This username & password is not the one you just created, but rather is the one that lets you connect to the database. Rename this file mysqlconnect.php and save it.
+
+Upload all the files to your web host, and then visit the URL. Log in and start making estimates.
+
+## WHAT IT DOES:
+
+Quotes is a tool for generating complex estimates with a lot of line items. My wife is a bookbinder that specializes in custom work. Each estimate she creates is incredibly labor intesnive, since every book she makes for a client has dozens of variables: half-leather vs. quarter-leather vs. full leather, cloth vs. paper, end sheets, end bands, what paper is used, stamping, what color foil, how many stamps, etc. She currently has a notebook with a lot of notes for how much each of these different things costs (and how long it will take) which she painstakingly looks up over and over as she creates estimates.
+
+I pointed out that computers are really good at remembering how much to charge for silver foil and how much longer 2-color end bands will take to sew. Also: they are very good at doing the math involved in creating the estimate.
+
+So I built her quotes.
+
+You don't have to be a bookbinder to use it!
+
+The app has three modes:
+
+* __Manage Line Items__: This is where you define line items for all estimates: e.g. 1 hour of labor = $40.00, 12" of thread = $.15, 1 yard of gold lame cloth = $15.00, etc.
+* __Manage Projects__: Here you define common estimates as a collection of line items. For instance, a half-leather book might include 1 yard of binders' board, 2 yards of decorative paper, 1 yard of leather, 60 sheets of paper, 5oz. of glue, 2oz of paste, and take 3 hours of labor.
+* __Creating & Managing Estimates__: Once you've defined line items and projects, you can create an estimate. If a client calls inquiring about a half-leather, you can just choose "half-leather" from the estimates drop down. You'll be presented with a breakdown of labor, materials, and "add-ons," which you can tweak.
+
+### It's easy to modify estimates once they've been created.
+
+* Does the client want to add stamping? Add it from the Add-ons menu.
+* Do you need to adjust the labor about to compensate for a discount? Just change the value in the text box.
+* Client doesn't want end bands? Just uncheck the line item.
+
+### It's easy to save estimates for review
+
+Can't remember the details of that estimate for John Smith? Just look at your saved estimates and you can pick up where you left off.
+
+More questions? Feel free to contact Matthew Reidsma on Twitter at @mreidsma or via email at reidsmam@gvsu.edu.
+
+## COPYRIGHT
+
+This tool is copyright 2012 Matthew Reidsma. 
+
+This tool is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This tool is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this tool. If not, see <http://www.gnu.org/licenses/>.
