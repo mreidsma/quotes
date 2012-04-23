@@ -8,7 +8,7 @@ This web app was developed by Matthew Reidsma in PHP to simplify complicated est
 
 Create a MySQL database and import the quotes.sql file. You'll then need to add a row to the users table with your username and contact details. To add a password, you'll need to create an SHA1 hash of your password, or you can just use the following hash and login with the password 'password' (no quotes). Then click "forgot my password" and the system will generate a new one for you.
 
-Open includes/mysqlconnect-sample.php in your favorite text editor and add the database name, username, and password. This username & password is not the one you just created, but rather is the one that lets you connect to the database. Rename this file mysqlconnect.php and save it.
+Open includes/mysqlconnect_sample.php in your favorite text editor and add the database name, username, and password. This username & password is not the one you just created, but rather is the one that lets you connect to the database. Rename this file mysqlconnect.php and save it.
 
 Upload all the files to your web host, and then visit the URL. Log in and start making estimates.
 
