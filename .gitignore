@@ -3,3 +3,5 @@ includes/mysqlconnect.php
 index_wip.php
 estimates/index_wip.php
 includes/functions_wip.php
+missing.html
+fonts/
