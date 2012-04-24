@@ -92,7 +92,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 
 <ul id="manage-navigation">
 <li><a href="items.php">Manage Items</a></li>
-<li><a href="projects.php">Manage Projects</a></li>
+<li><a href="projects.php">Manage Products</a></li>
 <li><a href="account.php">Change Password</a></li>
 </ul>
 

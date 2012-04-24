@@ -100,7 +100,7 @@ if($m != NULL) { echo $m; }
 	$project_result = mysql_query("SELECT * FROM projects WHERE project_del!=1 ORDER BY project_name ASC");
 	if($project_result) {
 		
-		echo '<label for="project_type" style="display:block; width:100%;">Select Project:</label>';
+		echo '<label for="project_type" style="display:block; width:100%;">Select Product:</label>';
 		echo '<select id="project_type" name="project_type">';
 		echo '<option value="#">---------</option>';
 		

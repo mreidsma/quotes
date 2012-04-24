@@ -36,7 +36,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 		$query = "INSERT INTO projects VALUES ('','$project_name','$project_notes','','$current_user_id','$project_private','0')";
 		$result = mysql_query($query) or die(mysql_error());
 			if($result) {
-				$m = "<div class=\"alert\">Your project has been added. </div>"; $e = 0;
+				$m = "<div class=\"alert\">Your product has been added. </div>"; $e = 0;
 				$project_id = mysql_insert_id();
 			} else {
 				echo '<meta http-equiv="refresh" content="0;url=projects.php?e=1&amp;m=16">';
@@ -67,7 +67,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 	$result = mysql_query($query) or die(mysql_error());
 		if($result) {
 			
-			$m = "<div class=\"alert\">Your project has been updated.</div>"; $e = 0;
+			$m = "<div class=\"alert\">Your product has been updated.</div>"; $e = 0;
 		}
 	}
 }
@@ -142,7 +142,7 @@ if(isset($_POST["add-item"])) {
 
 <?php echo $m; ?>
 
-<h3>Edit project</h3>
+<h3>Edit Product</h3>
 
 <?php
 
@@ -185,7 +185,7 @@ $i++; }
 <div style="clear: both;"></div>
 <!--div class="radio-list" style="width: 50%; float: left;"><span class="radio"><input type="checkbox" name="project-private" id="radio-private" value="1" <?php if($project_private == 1) { echo "checked"; } ?> />&nbsp;Private?</span></div-->
 
-<input type="submit" name="post" class="submit-button" value="Update Project" />
+<input type="submit" name="post" class="submit-button" value="Update Product" />
 </div>
 </fieldset>
 </form>
@@ -204,7 +204,7 @@ if($mat_result) {
 			$mat_detail_result = mysql_query("SELECT * FROM Items WHERE item_id=$mat_row[pitem_item] && item_del!=1 LIMIT 1");
 			if($mat_detail_result) {
 				while ($mat_detail_row = mysql_fetch_assoc($mat_detail_result)) {
-					echo "<li>$mat_detail_row[item_name] : $mat_row[pitem_qty] @ $mat_detail_row[item_amount]ea <a href=\"delprojitem.php?p=$project_id&amp;id=$mat_row[pitem_id]&amp;t=$project_total&amp;a=$mat_detail_row[item_amount]&amp;q=$mat_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this project. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
+					echo "<li>$mat_detail_row[item_name] : $mat_row[pitem_qty] @ $mat_detail_row[item_amount]ea <a href=\"delprojitem.php?p=$project_id&amp;id=$mat_row[pitem_id]&amp;t=$project_total&amp;a=$mat_detail_row[item_amount]&amp;q=$mat_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this product. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
 				}
 			}
 			
@@ -253,7 +253,7 @@ if($mat_result) {
 			$lab_detail_result = mysql_query("SELECT * FROM Items WHERE item_id=$lab_row[pitem_item] && item_del!=1 LIMIT 1");
 			if($lab_detail_result) {
 				while ($lab_detail_row = mysql_fetch_assoc($lab_detail_result)) {
-					echo "<li>$lab_detail_row[item_name] : $lab_row[pitem_qty] @ $lab_detail_row[item_amount]ea <a href=\"delprojitem.php?p=$project_id&amp;id=$lab_row[pitem_id]&amp;t=$project_total&amp;a=$lab_detail_row[item_amount]&amp;q=$lab_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this project. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
+					echo "<li>$lab_detail_row[item_name] : $lab_row[pitem_qty] @ $lab_detail_row[item_amount]ea <a href=\"delprojitem.php?p=$project_id&amp;id=$lab_row[pitem_id]&amp;t=$project_total&amp;a=$lab_detail_row[item_amount]&amp;q=$lab_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this product. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
 				}
 			}
 			
@@ -301,7 +301,7 @@ if($add_result) {
 			$add_detail_result = mysql_query("SELECT * FROM Items WHERE item_id=$add_row[pitem_item] && item_del!=1 LIMIT 1");
 			if($add_detail_result) {
 				while ($add_detail_row = mysql_fetch_assoc($add_detail_result)) {
-					echo "<li>$add_detail_row[item_name] : $add_row[pitem_qty] @ $add_detail_row[item_amount]ea <a href=\"delprojitem.php?p=$project_id&amp;id=$add_row[pitem_id]&amp;t=$project_total&amp;a=$add_detail_row[item_amount]&amp;q=$add_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this project. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
+					echo "<li>$add_detail_row[item_name] : $add_row[pitem_qty] @ $add_detail_row[item_amount]ea <a href=\"delprojitem.php?p=$project_id&amp;id=$add_row[pitem_id]&amp;t=$project_total&amp;a=$add_detail_row[item_amount]&amp;q=$add_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this product. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
 				}
 			}
 			
@@ -340,7 +340,7 @@ if($add_result) {
 
 </div>
 <div id="edit-item-list">
-<h3>Edit Projects</h3>
+<h3>Edit Products</h3>
 <ul>
 <?php
 
@@ -348,7 +348,7 @@ $edit_result = mysql_query("SELECT * FROM projects WHERE project_del!=1");
 	if($edit_result) {
 		while ($row = mysql_fetch_assoc($edit_result)) {
 ?>
-<li><a href="editproject.php?id=<?php echo $row['project_id']; ?>"><?php echo $row['project_name']; ?></a>&nbsp;<a href="delproject.php?id=<?php echo $row['project_id']; ?>" title="Delete this project" onclick="alert("This project will be removed. Are you sure you want to delete this? (There is no undo)")" class="delete_key">X</a></li>
+<li><a href="editproject.php?id=<?php echo $row['project_id']; ?>"><?php echo $row['project_name']; ?></a>&nbsp;<a href="delproject.php?id=<?php echo $row['project_id']; ?>" title="Delete this project" onclick="alert("This product will be removed. Are you sure you want to delete this? (There is no undo)")" class="delete_key">X</a></li>
 <?php
 		}
 	}

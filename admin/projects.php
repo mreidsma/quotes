@@ -58,18 +58,18 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 	
 	if($r != NULL) { // Get deleteed item messages
 		if($r == 1) { 
-			$m = "<div class=\"alert\">There was a problem deleting your project.</div>"; 
+			$m = "<div class=\"alert\">There was a problem deleting your product.</div>"; 
 		}
 
 		if($r == 2) {
-			$m = "<div class=\"alert\">Your project was deleted.</div>";		
+			$m = "<div class=\"alert\">Your product was deleted.</div>";		
 		}
 	}
 
 	echo $m; // Show any messages
 ?>
 
-<h3>Add a new project</h3>
+<h3>Add a new product</h3>
 
 <form class="add-form" name="add-project-form" id="add-project-form" action="editproject.php?add=true" method="post">
 <fieldset>
@@ -82,13 +82,13 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 
 <!--div class="radio-list" style="width: 50%; float: left;"><span class="radio"><input type="checkbox" name="add-project-private" id="radio-private" value="1" <?php if($project_private == 1) { echo "checked"; } ?> />&nbsp;Private?</span></div-->
 
-<input type="submit" name="post" class="submit-button" value="Create Project" />
+<input type="submit" name="post" class="submit-button" value="Create Product" />
 </div>
 </fieldset>
 </form>
 
 <div id="edit-item-list">
-<h3>Edit Projects</h3>
+<h3>Edit Products</h3>
 <ul>
 <?php
 
@@ -96,7 +96,7 @@ $edit_result = mysql_query("SELECT * FROM projects WHERE project_del!=1");
 	if($edit_result) {
 		while ($row = mysql_fetch_assoc($edit_result)) {
 ?>
-<li><a href="editproject.php?id=<?php echo $row['project_id']; ?>"><?php echo $row['project_name']; ?></a>&nbsp;<a href="delproject.php?id=<?php echo $row['project_id']; ?>" title="Delete this project" onclick="alert('This project will be removed. Are you sure you want to delete it? (There is no undo)');return true" class="delete_key">X</a></li>
+<li><a href="editproject.php?id=<?php echo $row['project_id']; ?>"><?php echo $row['project_name']; ?></a>&nbsp;<a href="delproject.php?id=<?php echo $row['project_id']; ?>" title="Delete this product" onclick="alert('This product will be removed. Are you sure you want to delete it? (There is no undo)');return true" class="delete_key">X</a></li>
 <?php
 		}
 	}
