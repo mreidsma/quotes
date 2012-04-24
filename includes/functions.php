@@ -75,7 +75,7 @@ function buildCheckboxes($ty, $id) {
 
 function newCheckboxes($ty, $id) {
 
-	$_result = mysql_query("SELECT * FROM project_items WHERE pitem_type='$id' && pitem_type='$ty' && pitem_del!=1");
+	$_result = mysql_query("SELECT * FROM project_items WHERE pitem_project='$id' && pitem_type='$ty' && pitem_del!=1");
 	if($_result) {
 		$_num = mysql_num_rows($_result);
 	

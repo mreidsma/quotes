@@ -148,7 +148,7 @@ if(isset($_POST['new_project'])) {
 
 buildTestDropdown(1);
 
-newCheckboxes(1, $est_id); 
+newCheckboxes(1, $new_project); 
 
 ?>
 	
@@ -161,7 +161,7 @@ newCheckboxes(1, $est_id);
 
 buildTestDropdown(0); 
 
-newCheckboxes(0, $est_id); 
+newCheckboxes(0, $new_project); 
 
 ?>
 	
@@ -174,7 +174,7 @@ newCheckboxes(0, $est_id);
 
 buildTestDropdown(2); 
 
-newCheckboxes(2, $est_id); 
+newCheckboxes(2, $new_project); 
 
 ?>
 	
