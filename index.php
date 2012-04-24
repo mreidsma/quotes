@@ -191,9 +191,9 @@ if($total_result) {
 	
 	while ($total_row = mysql_fetch_assoc($total_result)) {
 		
-		$total_price = number_format($total_row['project_total'], 2, '.', ',');
+		$new_total_price = number_format($total_row['project_total'], 2, '.', ',');
 		
-		echo '<h3 class="total_price">Total: $' . $total_price . '</h3>';
+		echo '<h3 class="total_price">Total: $' . $new_total_price . '</h3>';
 	}
 }
 
