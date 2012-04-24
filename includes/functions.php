@@ -92,7 +92,7 @@ function newCheckboxes($ty, $id) {
 				
 				while ($_item_row = mysql_fetch_assoc($_item_result)) {
 					
-					$item_total_price = $_row['pitem_qty'] * $_item_row['item_amount'];
+					$item_total_price = $_row['pitem_qty'] * ($_item_row['item_amount'] * $_item_row['item_qty']);
 					$item_total_price = number_format($item_total_price, 2, '.', ',');
 			
 					echo '<input type="checkbox" value="' . $item_total_price . '|' . $_item_row['item_name'] . '|' . $pitem_id . '|' . $_item_row['item_type'] . '" name="' . $ty . '_check[]" checked="checked" /> <label for="' . $ty . '_check">' . $_item_row['item_name'] . '</label> $<input type="text" value="' . $item_total_price . '" name="' . $ty . '_total[]" /><br />';
