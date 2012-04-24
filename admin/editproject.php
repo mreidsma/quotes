@@ -253,7 +253,12 @@ if($mat_result) {
 			$lab_detail_result = mysql_query("SELECT * FROM Items WHERE item_id=$lab_row[pitem_item] && item_del!=1 LIMIT 1");
 			if($lab_detail_result) {
 				while ($lab_detail_row = mysql_fetch_assoc($lab_detail_result)) {
-					echo "<li>$lab_detail_row[item_name] : $lab_row[pitem_qty] @ $lab_detail_row[item_amount]ea <a href=\"delprojitem.php?p=$project_id&amp;id=$lab_row[pitem_id]&amp;t=$project_total&amp;a=$lab_detail_row[item_amount]&amp;q=$lab_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this product. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
+					
+					// Convert hours to minutes
+					
+					$minutes = number_format($lab_detail_row['item_qty'] * 60);
+					
+					echo "<li>$lab_detail_row[item_name] : $minutes min. @ \$$lab_detail_row[item_amount]/hour <a href=\"delprojitem.php?p=$project_id&amp;id=$lab_row[pitem_id]&amp;t=$project_total&amp;a=$lab_detail_row[item_amount]&amp;q=$lab_row[pitem_qty]\" onclick=\"alert(\"This item will be removed from this product. Are you sure you want to delete this? (There is no undo)\")\" class=\"delete_key\">X</a>";
 				}
 			}
 			
