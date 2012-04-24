@@ -61,7 +61,7 @@ if(!$logged_in) { // If user is not already logged in, show the login screen
 
 	if($m == NULL) { // No errors.
 	
-	// Now we'll write is all to the database
+	// Now we'll write it all to the database
 	
 	$query = "UPDATE projects SET project_name='$ud_project_name', project_notes='$ud_project_notes', project_user='$ud_project_user', project_private='$project_private' WHERE project_id='$project_id'";
 	$result = mysql_query($query) or die(mysql_error());
@@ -84,6 +84,11 @@ if(isset($_POST["add-item"])) {
 	$pitem_item = $item_details[0];
 	$pitem_type = $item_details[1];
 	$pitem_amount = $item_details[2];
+	$item_qty = $item_details[3];
+	
+	if($item_qty) { // Labor
+		$pitem_qty = $pitem_qty * $item_qty;
+	}
 	
 	// Do validation
 	
@@ -274,14 +279,17 @@ $labor_result = mysql_query("SELECT * FROM Items WHERE item_del!=1 && item_type=
 		<form class="add-form" action="" method="post" style="padding-top: .5em;">
 		<input type="hidden" name="project" value="<?php echo $project_id; ?>" />
 		<input type="hidden" name="project-total" value="<?php echo $project_total; ?>" />
+		
 		<label for="qty">Qty:</label> <input type="text" name="qty" id="qty" placeholder="Qty" required class="required" />
 		<!-- Select field with all items listed -->
 		<select name="item" id="item" required class="required">
 		<option value="#">--Add Labor--</option>
 	<?php 
 	while ($labor_row = mysql_fetch_assoc($labor_result)) {
+		$minutes = number_format($labor_row['item_qty'] * 60);
+		
 	?>
-	<option value="<?php echo $labor_row['item_id'] . "|" . $labor_row['item_type'] . "|" . $labor_row['item_amount']; ?>"><?php echo $labor_row['item_name']; ?> <?php echo $labor_row['item_qty'] ?> hours @ $<?php echo $labor_row['item_amount']; ?>/hr</option>
+	<option value="<?php echo $labor_row['item_id'] . "|" . $labor_row['item_type'] . "|" . $labor_row['item_amount'] . "|" . $labor_row['item_qty']; ?>"><?php echo $labor_row['item_name']; ?> <?php echo $minutes; ?> min. @ $<?php echo $labor_row['item_amount']; ?>/hour</option>
 	<?php
 		} ?>
 		</select>
